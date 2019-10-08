@@ -2,6 +2,7 @@ using System;
 using Bogus;
 using Bogus.Extensions.Brazil;
 using Domain.Clientes;
+using Domain.Clientes.Dto;
 using Moq;
 using Xunit;
 
@@ -15,52 +16,78 @@ namespace Domain.Tests.Clientes
 
         private readonly Faker _faker;
         private readonly Mock<IClienteRepositorio> _clienteRepositorioMock;
+        private readonly Mock<IValidadorDeClienteComCpfJahCadastrado> _validadorDeClienteComCpfJahCadastradoMock;
         private readonly ArmazenadorDeCliente _armazenadorDeCliente;
 
         public ArmazenadorDeClienteTests()
         {
             _faker = new Faker();
             _clienteRepositorioMock = new Mock<IClienteRepositorio>();
+            _validadorDeClienteComCpfJahCadastradoMock = new Mock<IValidadorDeClienteComCpfJahCadastrado>();
 
             _armazenadorDeCliente = new ArmazenadorDeCliente(
-                _clienteRepositorioMock.Object
+                _clienteRepositorioMock.Object,
+                _validadorDeClienteComCpfJahCadastradoMock.Object
             );
         }
 
-        private Cliente CriarCenarioParaDeveArmazenarCliente()
+        private ClienteDto CriarCenarioParaDeveArmazenarCliente()
         {
-            return new Cliente(
-                _faker.Name.FirstName(),
-                _faker.Name.LastName(),
-                _faker.Date.Past(18),
-                _faker.Person.Cpf(),
-                "222444555"
+            var dto = new ClienteDto
+            {
+                Nome = _faker.Name.FirstName(),
+                SobreNome = _faker.Name.LastName(),
+                DataDeNascimento = _faker.Date.Past(18),
+                CPF = _faker.Person.Cpf(),
+                RG = "222444555"
+            };
+
+            var clienteEsperado = new Cliente(
+                dto.Nome,
+                dto.SobreNome,
+                dto.DataDeNascimento,
+                dto.CPF,
+                dto.RG
             );
+
+            _clienteRepositorioMock.Setup(r => r.Incluir(It.IsAny<Cliente>())).Returns(clienteEsperado);
+
+            return dto;
+        }
+
+        private ClienteDto CriarCenarioParaNaoDeveArmazenarClienteSeAlgumDadoDoDominioForInvalido()
+        {
+            string sobreNomeInvalido = null;
+
+            return new ClienteDto
+            {
+                Nome = _faker.Name.FirstName(),
+                SobreNome = sobreNomeInvalido,
+                DataDeNascimento = _faker.Date.Past(18),
+                CPF = _faker.Person.Cpf(),
+                RG = "222444555"
+            };
         }
 
         [Fact]
         public void DeveArmazenarCliente()
         {
-            var cliente = CriarCenarioParaDeveArmazenarCliente();
+            var dto = CriarCenarioParaDeveArmazenarCliente();
 
-            _armazenadorDeCliente.Armazenar(cliente);
+            var clienteSalvo = _armazenadorDeCliente.Armazenar(dto);
 
-            Assert.NotNull(cliente.Id);
-        }
-    }
-
-    internal class ArmazenadorDeCliente
-    {
-        private IClienteRepositorio _clienteRepositorio;
-
-        public ArmazenadorDeCliente(IClienteRepositorio clienteRepositorio)
-        {
-            this._clienteRepositorio = clienteRepositorio;
+            Assert.NotNull(clienteSalvo);
         }
 
-        internal void Armazenar(Cliente cliente)
+        [Fact]
+        public void NaoDeveArmazenarClienteSeAlgumDadoDoDominioForInvalido()
         {
-            throw new NotImplementedException();
+            var dto = CriarCenarioParaNaoDeveArmazenarClienteSeAlgumDadoDoDominioForInvalido();
+            var erroEsperado = "Sobrenome é inválido.";
+
+            var exception = Assert.Throws<ArgumentException>(() => _armazenadorDeCliente.Armazenar(dto));
+
+            Assert.Equal(exception.Message, erroEsperado);
         }
     }
 }

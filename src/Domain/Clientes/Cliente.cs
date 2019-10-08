@@ -82,6 +82,8 @@ namespace Domain.Clientes
             if (string.IsNullOrWhiteSpace(rg))
                 throw new ArgumentException("RG é inválido.");
 
+            rg = rg.Replace(".", "").Replace("-", "");
+
             if (!Regex.IsMatch(rg, @"^\d+$"))
                 throw new ArgumentException("RG é inválido.");
 

@@ -1,7 +1,10 @@
+using System.Collections.Generic;
+
 namespace Domain.Clientes
 {
     public interface IClienteRepositorio
     {
-        bool Incluir(Cliente cliente);
+        Cliente Incluir(Cliente cliente);
+        IEnumerable<Cliente> ObterPorCpf(string cpf);
     }
 }
