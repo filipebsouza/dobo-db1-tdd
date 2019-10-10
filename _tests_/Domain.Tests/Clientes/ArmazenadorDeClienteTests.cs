@@ -42,15 +42,7 @@ namespace Domain.Tests.Clientes
                 RG = "222444555"
             };
 
-            var clienteEsperado = new Cliente(
-                dto.Nome,
-                dto.SobreNome,
-                dto.DataDeNascimento,
-                dto.CPF,
-                dto.RG
-            );
-
-            _clienteRepositorioMock.Setup(r => r.Incluir(It.IsAny<Cliente>())).Returns(clienteEsperado);
+            _clienteRepositorioMock.Setup(r => r.Incluir(It.IsAny<Cliente>())).Returns(dto);
 
             return dto;
         }

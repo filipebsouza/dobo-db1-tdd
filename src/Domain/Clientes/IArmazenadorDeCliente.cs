@@ -4,6 +4,6 @@ namespace Domain.Clientes
 {
     public interface IArmazenadorDeCliente
     {
-        Cliente Armazenar(ClienteDto dto);
+        ClienteDto Armazenar(ClienteDto dto);
     }
 }

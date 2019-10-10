@@ -16,7 +16,7 @@ namespace Domain.Clientes
             this._validadorDeClienteComCpfJahCadastrado = validadorDeClienteComCpfJahCadastrado;
         }
 
-        public Cliente Armazenar(ClienteDto dto)
+        public ClienteDto Armazenar(ClienteDto dto)
         {
             var cliente = new Cliente(
                 dto.Nome,

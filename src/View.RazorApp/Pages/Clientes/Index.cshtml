@@ -1,0 +1,15 @@
+@model IEnumerable<Domain.Clientes.Dto.ClienteDto>
+
+@if (Model == null)
+{
+    <p>Não há clientes</p>
+}
+else 
+{
+    foreach(var cliente in Model)
+    {
+        <p>@cliente.Nome</p>
+    }
+}
+
+

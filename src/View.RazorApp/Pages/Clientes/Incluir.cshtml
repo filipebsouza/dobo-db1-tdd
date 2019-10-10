@@ -1,0 +1,9 @@
+<form asp-controller="Cliente" asp-action="Incluir" method="post">
+    <label for="Nome">Nome</label><input type="text" name="Nome" />
+    <label for="SobreNome">Sobrenome</label><input type="text" name="SobreNome" />
+    <label for="DataDeNascimento">Data de Nascimento</label><input type="text" name="DataDeNascimento" />
+    <label for="CPF">CPF</label><input type="text" name="CPF" />
+    <label for="RG">RG</label><input type="text" name="RG" />
+    <button type="submit">Salvar</button>
+    <button asp-controller="Cliente" asp-action="Index">Voltar</button>
+</form>

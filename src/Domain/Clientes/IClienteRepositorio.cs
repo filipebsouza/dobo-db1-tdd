@@ -1,10 +1,12 @@
 using System.Collections.Generic;
+using Domain.Clientes.Dto;
 
 namespace Domain.Clientes
 {
     public interface IClienteRepositorio
     {
-        Cliente Incluir(Cliente cliente);
-        IEnumerable<Cliente> ObterPorCpf(string cpf);
+        ClienteDto Incluir(Cliente cliente);
+        IEnumerable<ClienteDto> ObterPorCpf(string cpf);
+        IEnumerable<ClienteDto> Obter();
     }
 }

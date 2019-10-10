@@ -4,6 +4,7 @@ using System.Linq;
 using Bogus;
 using Bogus.Extensions.Brazil;
 using Domain.Clientes;
+using Domain.Clientes.Dto;
 using Moq;
 using Xunit;
 
@@ -30,16 +31,17 @@ namespace Domain.Tests.Clientes
 
         private string CriarCenarioParaDeveValidarClienteQuePossuiMesmoCpf()
         {
-            var clienteComCpfJahExistente = new Cliente(
-                _faker.Name.FirstName(),
-                _faker.Name.LastName(),
-                _faker.Date.Past(18),
-                _faker.Person.Cpf(),
-                "222444555"
-            );
+            var clienteComCpfJahExistente = new ClienteDto
+            {
+                Nome = _faker.Name.FirstName(),
+                SobreNome = _faker.Name.LastName(),
+                DataDeNascimento = _faker.Date.Past(18),
+                CPF = _faker.Person.Cpf(),
+                RG = "222444555"
+            };
 
             _clienteRepositorioMock.Setup(r => r.ObterPorCpf(clienteComCpfJahExistente.CPF))
-                .Returns(new List<Cliente> { clienteComCpfJahExistente }.AsEnumerable());
+                .Returns(new List<ClienteDto> { clienteComCpfJahExistente }.AsEnumerable());
 
             return clienteComCpfJahExistente.CPF;
         }
