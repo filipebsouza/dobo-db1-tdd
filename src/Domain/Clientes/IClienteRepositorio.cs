@@ -6,7 +6,7 @@ namespace Domain.Clientes
     public interface IClienteRepositorio
     {
         ClienteDto Incluir(Cliente cliente);
-        IEnumerable<ClienteDto> ObterPorCpf(string cpf);
-        IEnumerable<ClienteDto> Obter();
+        List<ClienteDto> ObterPorCpf(string cpf);
+        List<ClienteDto> Obter();
     }
 }

@@ -1,6 +1,7 @@
 using Domain.Clientes;
 using Domain.Clientes.Dto;
 using Microsoft.AspNetCore.Mvc;
+using View.RazorApp.ViewModels;
 
 namespace View.RazorApp.Controllers
 {
@@ -30,9 +31,28 @@ namespace View.RazorApp.Controllers
         [HttpPost]
         public ActionResult Incluir(ClienteDto dto)
         {
-            var retorno = _armazenadorDeCliente.Armazenar(dto);
+            try
+            {
+                _armazenadorDeCliente.Armazenar(dto);
 
-            return RedirectToAction("Index");
+                return RedirectToAction("Index");
+            }
+            catch (System.ArgumentException ex)
+            {
+                PreencherMensagensDeValidacao(ex);
+
+                return View("Pages/Clientes/Incluir.cshtml", dto);
+            }
+        }
+
+        private void PreencherMensagensDeValidacao(System.ArgumentException exception)
+        {
+            var validationMessage = new ValidationMessage
+            {
+                Mensagem = exception.Message
+            };
+
+            ViewBag.ValidationMessage = validationMessage;
         }
     }
 }

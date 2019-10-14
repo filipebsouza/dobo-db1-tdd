@@ -40,6 +40,10 @@
     <div class="container">
         <partial name="_CookieConsentPartial" />
         <main role="main" class="pb-3">
+            @if(ViewBag.ValidationMessage != null)
+            {
+                <h2>Erro de validação: @ViewBag.ValidationMessage.Mensagem</h2>
+            }
             @RenderBody()
         </main>
     </div>

@@ -10,7 +10,7 @@ namespace Infra.Clientes
     {
         private readonly string src = "/mnt/d/dev/dojo-db1/src/Infra/Database/db.db";
 
-        public IEnumerable<ClienteDto> Obter()
+        public List<ClienteDto> Obter()
         {
             try
             {
@@ -30,7 +30,8 @@ namespace Infra.Clientes
                         DataDeNascimento = cliente.DataDeNascimento,
                         CPF = cliente.CPF,
                         RG = cliente.RG
-                    });
+                    })
+                    .ToList();
                 }
             }
             catch
@@ -65,7 +66,7 @@ namespace Infra.Clientes
             }
         }
 
-        public IEnumerable<ClienteDto> ObterPorCpf(string cpf)
+        public List<ClienteDto> ObterPorCpf(string cpf)
         {
             try
             {
@@ -73,7 +74,11 @@ namespace Infra.Clientes
                 {
                     var clientes = db.GetCollection<Cliente>("clientes");
 
-                    return clientes.Find(x => x.CPF == cpf).Select(cliente => new ClienteDto
+                    var retorno = clientes.Find(x => x.CPF == cpf);
+
+                    if (retorno == null || !retorno.Any()) return null;
+
+                    return retorno.Select(cliente => new ClienteDto
                     {
                         Id = cliente.Id,
                         Nome = cliente.Nome,
@@ -81,7 +86,8 @@ namespace Infra.Clientes
                         DataDeNascimento = cliente.DataDeNascimento,
                         CPF = cliente.CPF,
                         RG = cliente.RG
-                    });
+                    })
+                    .ToList();
                 }
             }
             catch

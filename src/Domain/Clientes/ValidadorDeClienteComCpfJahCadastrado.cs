@@ -19,7 +19,7 @@ namespace Domain.Clientes
 
             var clientesComMesmoCpf = _clienteRepositorio.ObterPorCpf(cpf);
 
-            if (clientesComMesmoCpf != null && clientesComMesmoCpf.Any())
+            if (clientesComMesmoCpf?.FirstOrDefault() != null)
                 throw new ArgumentException("Já existe cliente com este CPF.");
         }
     }

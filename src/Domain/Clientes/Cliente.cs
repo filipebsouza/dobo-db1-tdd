@@ -12,6 +12,8 @@ namespace Domain.Clientes
         public string CPF { get; private set; }
         public string RG { get; private set; }
 
+        protected Cliente() { }
+
         public Cliente(string nome, string sobreNome, DateTime dataDeNascimento, string cpf, string rg)
         {
             ParametrosSaoValidos(nome, sobreNome, dataDeNascimento, cpf, rg);

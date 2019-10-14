@@ -41,7 +41,7 @@ namespace Domain.Tests.Clientes
             };
 
             _clienteRepositorioMock.Setup(r => r.ObterPorCpf(clienteComCpfJahExistente.CPF))
-                .Returns(new List<ClienteDto> { clienteComCpfJahExistente }.AsEnumerable());
+                .Returns(new List<ClienteDto> { clienteComCpfJahExistente });
 
             return clienteComCpfJahExistente.CPF;
         }

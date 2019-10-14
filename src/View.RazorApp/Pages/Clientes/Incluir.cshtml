@@ -1,9 +1,25 @@
+@model Domain.Clientes.Dto.ClienteDto
 <form asp-controller="Cliente" asp-action="Incluir" method="post">
-    <label for="Nome">Nome</label><input type="text" name="Nome" />
-    <label for="SobreNome">Sobrenome</label><input type="text" name="SobreNome" />
-    <label for="DataDeNascimento">Data de Nascimento</label><input type="text" name="DataDeNascimento" />
-    <label for="CPF">CPF</label><input type="text" name="CPF" />
-    <label for="RG">RG</label><input type="text" name="RG" />
-    <button type="submit">Salvar</button>
-    <button asp-controller="Cliente" asp-action="Index">Voltar</button>
+    <div class="form-group">
+        <label for="Nome">Nome</label>
+        <input asp-for="Nome" type="text" name="Nome" />
+    </div>
+    <div class="form-group">
+        <label for="SobreNome">Sobrenome</label>
+        <input asp-for="SobreNome" type="text" name="SobreNome" />
+    </div>
+    <div class="form-group">
+        <label for="DataDeNascimento">Data de Nascimento</label>
+        <input asp-for="DataDeNascimento" type="text" name="DataDeNascimento" />
+    </div>
+    <div class="form-group">
+        <label for="CPF">CPF</label>
+        <input asp-for="CPF" type="text" name="CPF" />
+    </div>
+    <div class="form-group">
+        <label for="RG">RG</label>
+        <input asp-for="RG" type="text" name="RG" />
+    </div>
+    <button type="submit" class="btn btn-primary">Salvar</button>
+    <a class="nav-link" asp-controller="Cliente" asp-action="Index" class="btn btn-secondary">Voltar</a>
 </form>
