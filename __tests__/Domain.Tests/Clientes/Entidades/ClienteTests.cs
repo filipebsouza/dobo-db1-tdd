@@ -1,8 +1,8 @@
 using System;
-using Domain.Clientes;
+using Domain.Clientes.Entidades;
 using Xunit;
 
-namespace Domain.Tests.Clientes
+namespace Domain.Tests.Clientes.Entidades
 {
     public class ClienteTests
     {

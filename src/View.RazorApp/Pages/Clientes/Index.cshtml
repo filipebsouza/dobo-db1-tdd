@@ -1,12 +1,12 @@
-@model List<Domain.Clientes.Dto.ClienteDto>
+@model List<Domain.Clientes.Dtos.ClienteDto>
 
-@if (Model == null)
-{
-    <p>Não há clientes</p>
-}
-else 
-{
-    <div>
+<div>
+    @if (Model == null)
+    {
+        <p>Não há clientes</p>
+    }
+    else 
+    {
         <table class="table">
             <thead>
                 <tr>
@@ -34,8 +34,8 @@ else
                 }
             </tbody>
         </table>
-        <a class="nav-link text-dark" asp-controller="Cliente" asp-action="Incluir">Incluir</a>
-    </div>
-}
+    }
+    <a class="nav-link text-dark" asp-controller="Cliente" asp-action="Incluir">Incluir</a>
+</div>
 
 

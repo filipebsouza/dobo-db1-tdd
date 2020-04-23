@@ -1,6 +1,9 @@
-using Domain.Clientes.Dto;
+using Domain.Clientes.Dtos;
+using Domain.Clientes.Entidades;
+using Domain.Clientes.Interfaces;
+using Domain.Clientes.Repositorios;
 
-namespace Domain.Clientes
+namespace Domain.Clientes.Servicos
 {
     public class ArmazenadorDeCliente : IArmazenadorDeCliente
     {

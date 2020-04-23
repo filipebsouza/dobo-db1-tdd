@@ -1,7 +1,8 @@
 using System.Collections.Generic;
-using Domain.Clientes.Dto;
+using Domain.Clientes.Dtos;
+using Domain.Clientes.Entidades;
 
-namespace Domain.Clientes
+namespace Domain.Clientes.Repositorios
 {
     public interface IClienteRepositorio
     {

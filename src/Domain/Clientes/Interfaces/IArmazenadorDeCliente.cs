@@ -1,6 +1,6 @@
-using Domain.Clientes.Dto;
+using Domain.Clientes.Dtos;
 
-namespace Domain.Clientes
+namespace Domain.Clientes.Interfaces
 {
     public interface IArmazenadorDeCliente
     {

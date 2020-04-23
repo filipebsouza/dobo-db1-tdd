@@ -1,7 +1,9 @@
 using System;
 using System.Linq;
+using Domain.Clientes.Repositorios;
+using Domain.Clientes.Interfaces;
 
-namespace Domain.Clientes
+namespace Domain.Clientes.Validadores
 {
     public class ValidadorDeClienteComCpfJahCadastrado : IValidadorDeClienteComCpfJahCadastrado
     {

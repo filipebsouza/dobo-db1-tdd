@@ -1,12 +1,15 @@
 using System;
 using Bogus;
 using Bogus.Extensions.Brazil;
-using Domain.Clientes;
-using Domain.Clientes.Dto;
+using Domain.Clientes.Entidades;
+using Domain.Clientes.Dtos;
+using Domain.Clientes.Repositorios;
+using Domain.Clientes.Interfaces;
+using Domain.Clientes.Servicos;
 using Moq;
 using Xunit;
 
-namespace Domain.Tests.Clientes
+namespace Domain.Tests.Clientes.Servicos
 {
     public class ArmazenadorDeClienteTests
     {

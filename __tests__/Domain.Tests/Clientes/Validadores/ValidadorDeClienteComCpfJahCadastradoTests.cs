@@ -1,14 +1,14 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using Bogus;
 using Bogus.Extensions.Brazil;
-using Domain.Clientes;
-using Domain.Clientes.Dto;
+using Domain.Clientes.Repositorios;
+using Domain.Clientes.Dtos;
+using Domain.Clientes.Validadores;
 using Moq;
 using Xunit;
 
-namespace Domain.Tests.Clientes
+namespace Domain.Tests.Clientes.Validadores
 {
     public class ValidadorDeClienteComCpfJahCadastradoTests
     {

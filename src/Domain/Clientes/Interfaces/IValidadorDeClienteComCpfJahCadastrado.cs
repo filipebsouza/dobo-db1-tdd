@@ -1,4 +1,4 @@
-namespace Domain.Clientes
+namespace Domain.Clientes.Interfaces
 {
     public interface IValidadorDeClienteComCpfJahCadastrado
     {

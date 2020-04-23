@@ -1,5 +1,7 @@
 using Domain.Clientes;
-using Domain.Clientes.Dto;
+using Domain.Clientes.Dtos;
+using Domain.Clientes.Interfaces;
+using Domain.Clientes.Repositorios;
 using Microsoft.AspNetCore.Mvc;
 using View.RazorApp.ViewModels;
 

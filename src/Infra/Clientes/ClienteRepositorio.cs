@@ -1,14 +1,17 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using Domain.Clientes;
-using Domain.Clientes.Dto;
+using Domain.Clientes.Entidades;
+using Domain.Clientes.Dtos;
+using Domain.Clientes.Repositorios;
 using LiteDB;
 
 namespace Infra.Clientes
 {
     public class ClienteRepositorio : IClienteRepositorio
     {
-        private readonly string src = "/mnt/d/dev/dojo-db1/src/Infra/Database/db.db";
+        //C:\\dev\\dobo-db1-tdd\\src\\View.RazorApp
+        private readonly string src = Environment.CurrentDirectory.Replace("View.RazorApp", "Infra\\Database\\db.db");
 
         public List<ClienteDto> Obter()
         {

@@ -1,6 +1,6 @@
 using System;
 
-namespace Domain.Clientes.Dto
+namespace Domain.Clientes.Dtos
 {
     public class ClienteDto
     {
